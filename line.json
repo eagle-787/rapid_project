@@ -1,0 +1,22 @@
+{
+    "sections": [
+        {"type": "start", "start_x": 60, "start_y": [360, 480, 540, 660]},
+        {"type": "normal", "num_units": 4, "length": 360},
+        {"type": "merge", "r_vector": [240, 120], "l_vector": [240, -120]},
+        {"type": "normal", "num_units": 2, "length": 1},
+        {"type": "crossing", "r_vector": [180, 60]},
+        {"type": "normal", "num_units": 2, "length": 1},
+        {"type": "normal", "num_units": 2, "length": 360},
+        {"type": "normal", "num_units": 2, "length": 360},
+        {"type": "normal", "num_units": 2, "length": 360},
+        {"type": "normal", "num_units": 2, "length": 1},
+        {"type": "crossing", "r_vector": [180, 60]},
+        {"type": "normal", "num_units": 2, "length": 360},
+        {"type": "end", "num_units": 2}
+    ],
+    "stations": [
+        {"name": "Stonevale", "sect_index": 1},
+        {"name": "Lunaris", "sect_index": 7},
+        {"name": "Ashmoor", "sect_index": 11}
+    ]
+}
