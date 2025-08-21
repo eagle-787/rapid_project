@@ -8,26 +8,26 @@
             "train": "A1",
             "number": 601,
             "schedule": [
-                {"station": "Stonevale", "track": 3, "arr_time": null, "dep_time": 360, "direction": "FORWARD"},
+                {"station": "Stonevale", "track": 3, "dep_time": 360, "direction": "FORWARD"},
                 {"station": "Lunaris", "track": 0, "arr_time": 368, "dep_time": 369, "direction": "FORWARD"},
-                {"station": "Ashmoor", "track": 1, "arr_time": 375, "dep_time": null}
+                {"station": "Ashmoor", "track": 1, "arr_time": 375}
             ]
         },
         {
             "train": "A2",
             "number": 602,
             "schedule": [
-                {"station": "Ashmoor", "track": 0, "arr_time": null, "dep_time": 362, "direction": "BACKWARD"},
+                {"station": "Ashmoor", "track": 0, "dep_time": 362, "direction": "BACKWARD"},
                 {"station": "Lunaris", "track": 1, "arr_time": 368, "dep_time": 369, "direction": "BACKWARD"},
-                {"station": "Stonevale", "track": 0, "arr_time": 375, "dep_time": null}
+                {"station": "Stonevale", "track": 0, "arr_time": 375}
             ]
         }
     ],
-    "Stonevale": [
+    "StartingStn": [
         {"number": 601, "track": 3},
         {"number": 602, "track": 0}
     ],
-    "Ashmoor": [
+    "TerminalStn": [
         {"number": 602, "track": 0},
         {"number": 601, "track": 1}
     ]
