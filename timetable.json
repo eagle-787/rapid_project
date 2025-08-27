@@ -5,7 +5,7 @@
     ],
     "timetable": [
         {
-            "train": "A1",
+            "train_id": "A1",
             "number": 601,
             "schedule": [
                 {"station": "Stonevale", "track": 3, "dep_time": 360, "direction": "FORWARD"},
@@ -14,7 +14,7 @@
             ]
         },
         {
-            "train": "A2",
+            "train_id": "A2",
             "number": 602,
             "schedule": [
                 {"station": "Ashmoor", "track": 0, "dep_time": 362, "direction": "BACKWARD"},
@@ -23,11 +23,11 @@
             ]
         }
     ],
-    "StartingStn": [
+    "starting_stn": [
         {"number": 601, "track": 3},
         {"number": 602, "track": 0}
     ],
-    "TerminalStn": [
+    "terminal_stn": [
         {"number": 602, "track": 0},
         {"number": 601, "track": 1}
     ]

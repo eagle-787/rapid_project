@@ -289,22 +289,22 @@ class Line:
     def _create_sections(section_data: list[SectionItem]) -> list[SectionLike]:
         sections: list[SectionLike] = []
         for section in section_data:
-            if section["type"] == "start":
-                start_coords = cast(list[Coord], section["start"])
+            if section["unit_type"] == "start":
+                start_coords = cast(list[Coord], section["start_coord"])
                 sections.append(StartSection(start_coords))
-            elif section["type"] == "normal":
+            elif section["unit_type"] == "normal":
                 length = cast(float, section["length"])
                 sections.append(NormalSection(sections[-1], length))
-            elif section["type"] == "crossing":
+            elif section["unit_type"] == "crossing":
                 vector = cast(Coord, section["vector"])
                 sections.append(CrossingSection(sections[-1], vector))
-            elif section["type"] == "merge":
+            elif section["unit_type"] == "merge":
                 vector = cast(Coord, section["vector"])
                 sections.append(MergeSection(sections[-1], vector))
-            elif section["type"] == "branch":
+            elif section["unit_type"] == "branch":
                 vector = cast(Coord, section["vector"])
                 sections.append(BranchSection(sections[-1], vector))
-            elif section["type"] == "end":
+            elif section["unit_type"] == "end":
                 sections.append(EndSection(sections[-1]))
         return sections
 

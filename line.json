@@ -1,18 +1,18 @@
 {
     "sections": [
-        {"type": "start", "start": [[60, 360], [60, 480], [60, 540], [60, 660]]},
-        {"type": "normal", "length": 360},
-        {"type": "merge", "vector": [240, 120]},
-        {"type": "normal", "length": 1},
-        {"type": "crossing", "vector": [180, 60]},
-        {"type": "normal", "length": 1},
-        {"type": "normal", "length": 360},
-        {"type": "normal", "length": 360},
-        {"type": "normal", "length": 360},
-        {"type": "normal", "length": 1},
-        {"type": "crossing", "vector": [180, 60]},
-        {"type": "normal", "length": 360},
-        {"type": "end"}
+        {"unit_type": "start", "start_coord": [[60, 360], [60, 480], [60, 540], [60, 660]]},
+        {"unit_type": "normal", "length": 360},
+        {"unit_type": "merge", "vector": [240, 120]},
+        {"unit_type": "normal", "length": 1},
+        {"unit_type": "crossing", "vector": [180, 60]},
+        {"unit_type": "normal", "length": 1},
+        {"unit_type": "normal", "length": 360},
+        {"unit_type": "normal", "length": 360},
+        {"unit_type": "normal", "length": 360},
+        {"unit_type": "normal", "length": 1},
+        {"unit_type": "crossing", "vector": [180, 60]},
+        {"unit_type": "normal", "length": 360},
+        {"unit_type": "end"}
     ],
     "stations": [
         {"name": "Stonevale", "sect_index": 1},

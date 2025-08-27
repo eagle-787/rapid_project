@@ -28,7 +28,7 @@ class ScheduleItem(TypedDict):
 
 
 class TimetableEntry(TypedDict):
-    train: str
+    train_id: str
     number: int
     schedule: list[ScheduleItem]
 
@@ -36,14 +36,14 @@ class TimetableEntry(TypedDict):
 class TimetableFile(TypedDict):
     train: list[TrainDef]
     timetable: list[TimetableEntry]
-    StartingStn: list[dict[str, int]]
-    TerminalStn: list[dict[str, int]]
+    starting_stn: list[dict[str, int]]
+    terminal_stn: list[dict[str, int]]
 
 
 # --- JSON構造の型定義（line.jsonに対応） ---
 class SectionItem(TypedDict):
-    type: Literal["start", "end", "normal", "branch", "merge", "crossing"]
-    start: list[Coord] | None
+    unit_type: Literal["start", "end", "normal", "branch", "merge", "crossing"]
+    start_coord: list[Coord] | None
     length: float | None
     vector: Coord | None
 

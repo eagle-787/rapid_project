@@ -1,8 +1,8 @@
 import math
 import pygame
-from core.enums import Sign
-from core.type_hint import Color, Coord, ControlLike, Size
-from core.module import Line, Train
+from ..core.enums import Sign
+from ..core.type_hint import Color, Coord, ControlLike, Size
+from ..core.module import Line, Train
 
 
 class Camera:

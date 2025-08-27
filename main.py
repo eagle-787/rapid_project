@@ -1,11 +1,15 @@
 import pygame
 import sys
-import json
-from pathlib import Path
-from view.drawer import Drawer, SignalDrawer, Camera
-from core.module import Train, Line
-from core.control import Starting4TrackControl, Terminal2TrackControl
-from core.type_hint import (
+from .config_schema import (
+    SCHEMA_LINE,
+    SCHEMA_TIMETABLE,
+    load_and_validate,
+    semantic_checks,
+)
+from .view.drawer import Drawer, SignalDrawer, Camera
+from .core.module import Train, Line
+from .core.control import Starting4TrackControl, Terminal2TrackControl
+from .core.type_hint import (
     Color,
     Size,
     LineFile,
@@ -18,14 +22,18 @@ from core.type_hint import (
 
 class Game:
     def __init__(self) -> None:
-        self.line_file: LineFile = self._get_json_file("line.json")
-        self.timetable_file: TimetableFile = self._get_json_file("timetable.json")
+        self.line_file: LineFile = load_and_validate("line.json", SCHEMA_LINE)
+        self.timetable_file: TimetableFile = load_and_validate(
+            "timetable.json", SCHEMA_TIMETABLE
+        )
+        semantic_checks(self.line_file, self.timetable_file)
+
         self.line: Line = Line(self.line_file)
         self.starting_control: ControlLike = Starting4TrackControl(
-            self.line.sections, self.timetable_file["StartingStn"]
+            self.line.sections, self.timetable_file["starting_stn"]
         )
         self.terminal_control: ControlLike = Terminal2TrackControl(
-            self.line.sections, self.timetable_file["TerminalStn"]
+            self.line.sections, self.timetable_file["terminal_stn"]
         )
         self.trains: list[Train] = self._create_train(
             self.timetable_file["train"], self.timetable_file["timetable"]
@@ -39,20 +47,13 @@ class Game:
         for train in self.trains:
             train.update(curr_minutes, self.line)
 
-    @staticmethod
-    def _get_json_file(file_name):
-        base_path = Path(__file__).resolve().parent
-        json_path = base_path / file_name
-        with json_path.open("r", encoding="utf-8") as f:
-            return json.load(f)
-
     def _create_train(
         self, train_data: list[TrainDef], timetable_data: list[TimetableEntry]
     ) -> list[Train]:
         trains = []
         for train in train_data:
             for schedule in timetable_data:
-                if schedule["train"] == train["id"]:
+                if schedule["train_id"] == train["id"]:
                     trains.append(Train(self.line.stations, train, schedule))
                     break
         return trains
@@ -125,6 +126,6 @@ class Main:
             self.camera.move_right()
 
 
-if __name__ == "__main__":
+def main() -> None:
     simulator = Main()
     simulator.run()
