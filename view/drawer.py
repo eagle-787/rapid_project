@@ -1,5 +1,6 @@
 import math
 import pygame
+from pathlib import Path
 from ..core.enums import Sign
 from ..core.type_hint import Color, Coord, ControlLike, Size
 from ..core.module import Line, Train
@@ -8,20 +9,23 @@ from ..core.module import Line, Train
 class Camera:
     MOVE_DX: int = 12
 
-    def __init__(self, sim_size: Size, offset_x: int = 0) -> None:
+    def __init__(self, sim_size: Size, viewport_size: Size, offset_x: int = 0) -> None:
         self.sim_size: Size = sim_size
+        self.viewport_size: Size = viewport_size
         self.offset_x: int = offset_x
+
+    @property
+    def max_offset(self) -> int:
+        return max(0, self.sim_size[0] - self.viewport_size[0])
 
     def apply(self, pos: Coord) -> Coord:
         return (pos[0] - self.offset_x, pos[1])
 
     def move_right(self) -> None:
-        if self.offset_x < self.sim_size[0]:
-            self.offset_x += self.MOVE_DX
+        self.offset_x = min(self.offset_x + self.MOVE_DX, self.max_offset)
 
     def move_left(self) -> None:
-        if self.offset_x > 0:
-            self.offset_x -= self.MOVE_DX
+        self.offset_x = max(self.offset_x - self.MOVE_DX, 0)
 
 
 class SignalDrawer:
@@ -44,9 +48,8 @@ class SignalDrawer:
         self.line: Line = line
         self.starting_control: ControlLike = starting_control
         self.terminal_control: ControlLike = terminal_control
-        self.track_font = pygame.font.Font(
-            "/home/kohei/apps/train_sim/rapid_project/DSEG7Modern-Bold.ttf", 48
-        )
+        font_path = Path(__file__).resolve().parent.parent / "DSEG7Modern-Bold.ttf"
+        self.track_font = pygame.font.Font(str(font_path), 48)
 
     def draw(self) -> None:
         self._draw_signal0()

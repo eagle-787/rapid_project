@@ -82,7 +82,7 @@ class Main:
         self.screen = pygame.display.set_mode(self.SCREEN_SIZE)
         self.clock = pygame.time.Clock()
 
-        self.camera: Camera = Camera(self.SIM_SIZE)
+        self.camera: Camera = Camera(self.SIM_SIZE, self.SCREEN_SIZE)
         self.time: Time = Time()
         self.game: Game = Game()
 
